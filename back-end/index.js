@@ -2,16 +2,19 @@ import express from "express";
 import cors from "cors";
 
 const server = express();
+app.use(cors());
+app.use(json());
 const user =[];
-const msg =[];
+const tweet =[];
 
-server.post("/sing-up" , (req,resp)=>{
+server.post("/sign-up" , (req,resp)=>{
    if( req.body.username === "" || req.body.avatar === ""){
         req.status(400).send("Todos os campos são obrigatórios!");
         return;
     } else {
         user.body(req.body);
-        resp.send("OK")
+        user.push(req.body);
+        resp.status(201).send("OK")
     }
 })
 
@@ -20,17 +23,28 @@ server.post("/tweets", (req, resp) => {
         req.status(400).send("Todos os campos são obrigatórios!");
         return;
     } else {
-        msg.push({ tweet: req.body.tweet, username: req.body.username, avatar });
+        tweet.push({ tweet: req.body.tweet, username: req.body.username, avatar });
         resp.send("OK")
     }
 })
 
 server.get("/tweets",(req,resp)=>{
     const QtdMax = 10;
-    
+    const pageTweteroo = req.body.page;//aqui fiz uma req do tipo bodyt pra page
+    if(pageTweteroo > QtdMax){
+        
+    }
 })
 
 
 server.listen(5000, ()=>{
     console.log("oi")
 })
+
+
+/* 
+filtrando apenas os 10 ultimos tweets
+
+1- primeiro , tem que havar uma page que irá ter todos os tweets , todos (sem filtrar)
+2- depois , filtrar eles : se a page tiver mais do que 10 tweets , fazer um desctruturing de tweets e add, apenas 10 ultimos
+*/
