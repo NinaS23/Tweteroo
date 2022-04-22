@@ -2,13 +2,14 @@ import express from "express";
 import cors from "cors";
 
 const server = express();
+server.use(express.json());
 server.use(cors());
 const user =[];
 const tweet =[];
 
 server.post("/sign-up" , (req,resp)=>{
    if( req.body.username === "" || req.body.avatar === ""){
-        req.status(400).send("Todos os campos são obrigatórios!");
+        resp.status(400).send("Todos os campos são obrigatórios!");
         return;
     } else {
         user.body(req.body);
@@ -19,7 +20,7 @@ server.post("/sign-up" , (req,resp)=>{
 
 server.post("/tweets", (req, resp) => {
     if (req.body.username === "" || req.body.tweet === "") {
-        req.status(400).send("Todos os campos são obrigatórios!");
+        resp.status(400).send("Todos os campos são obrigatórios!");
         return;
     } else {
         tweet.push({ tweet: req.body.tweet, username: req.body.username, avatar });
@@ -27,13 +28,13 @@ server.post("/tweets", (req, resp) => {
     }
 })
 
-server.get("/tweets",(req,resp)=>{
+/* server.get("/tweets",(req,resp)=>{
     const QtdMax = 10;
     const pageTweteroo = req.body.page;//aqui fiz uma req do tipo bodyt pra page
     if(pageTweteroo > QtdMax){
         
     }
-})
+}) */
 
 
 server.listen(5000, ()=>{
