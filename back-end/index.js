@@ -35,15 +35,15 @@ server.get("/tweets", (req, resp) => {
     const QtdMax = 10;
     const page = [];
     for (let i = 0; i < QtdMax; i++) {
-        users.push(avatar[i])
-        page.push(tweet[i])
+        
         if (tweet[i].username  === users.username) {
+            page.push(tweet[i])
             resp.status(201).send(page)
         } else {
             resp.status(400).send("desculpe , mas não foi possivel encontrar seu usuaŕio")
         }
     }
-   resp.status(201).send(page)
+  
 }) 
 
 
