@@ -12,7 +12,7 @@ server.post("/sign-up" , (req,resp)=>{
         resp.status(400).send("Todos os campos são obrigatórios!");
         return;
     } else {
-       const users = req.body
+       const users = req.body.user
         user.push(users);
         resp.status(201).send("OK")
     }
