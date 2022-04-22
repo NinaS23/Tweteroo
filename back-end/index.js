@@ -2,8 +2,7 @@ import express from "express";
 import cors from "cors";
 
 const server = express();
-app.use(cors());
-app.use(json());
+server.use(cors());
 const user =[];
 const tweet =[];
 
